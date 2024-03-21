@@ -12,9 +12,6 @@ public class InfijaPrefija {
     
     static Scanner entrada = new Scanner(System.in);
 
-    public InfijaPrefija(){
-
-    }
 
     private static int precedencia(char operador) {
         switch (operador) {
@@ -49,93 +46,53 @@ public class InfijaPrefija {
             case '*':
             case '/':
             case '^':
+			   //coloque aquí el codigo para manejar operadores
         
-            	//es un Operador
-            	//considero que es un operando
-            	//Se repetira mientra siga sacando de la pila Operadores
-            	while (true) {
-            		//si la pila esta vacia,sin preguntar la meto a la pila
-	            	if (pila.esVacia()) {
-		            		pila.apilar(caracterToString(simbolo));
-		            		break;
-		            	}
-	            	
-	            	else {
-	            		//preguntar por la prioridad del operando
-	            		if(precedencia(simbolo) > precedencia(pila.cima().charAt(0))) {
-		            			pila.apilar(caracterToString(simbolo));
-		            			break;
-		            		}
-	            		else {
-	            			//saco el operador de la pila y lo anexo a la cadena postFija
-	            			
-	            			cadenaPostFija.append(pila.cima());
-	            			pila.retirar();
-	            		}
-	            	}
-            	}
+            	
+			
             	break;
             case')':
-            	  //Iterar hasta que encuentre un primer paréntesis izquierdo
-            	 boolean buscandoParentesisIzquierdo = true;
-            	 while (buscandoParentesisIzquierdo){
-	            	
-			            //Sacar operador cima de la pila y 
-			            //pasarlo a la expresión postfija
-	            		
-	            		cadenaPostFija.append(pila.cima());
-			    		pila.retirar();
-	            	   
-			            
-			            //Si nueva cima es paréntesis izquierdo, 
-			    		//suprimir elemento cima
-			    		if(pila.cima().equals("(")) {
-			    				pila.retirar();
-			    				buscandoParentesisIzquierdo=false;
-			    		}
-		    		
-            	}	
+            	  //coloque el código para manejar el paréntesis derecho
+            	 
 		    	break;
 		    			
             case '(':
-            	//pasarlo a la pila
-            	pila.apilar(caracterToString(simbolo));
+            	//coloque el código para manejar el paréntesis izquierdo
             	break;
             case ' ':
             	//es un espacio en blanco y solo lo dejamos pasar
             	break;
             default:
-            	//considero que es un operando y lo paso directamente a
-            	//la cadena PostFija
+			    //se considera que es un operando y se pasa a la cadena postfija
             	
-            	cadenaPostFija.append(simbolo);
+        
             			
             				
            }//fin de switch
             	
         }//fin de for
         
+		
+		//retiramos los operandos que quedan en la pila
+        
+		
 
-        for(int i=0;i<=pila.getTamanio();i++) {
-           cadenaPostFija.append(pila.cima());
-		   pila.retirar();
-        }
-
-		return cadenaPostFija.toString();
+		//retornamos la cadena postfija
         
 	}
 	
 	//convierte un char a un objeto tipo String
 	private static String caracterToString(char ch) {
-		  return String.valueOf(ch);
+		  //retornamos el carácter convertido a String
+		  
 	}
 	
 	public static double evaluarPrefija(String expresionPrefija) {
 		//Arreglo que almacenará operandos
 		double valores[]=new double[expresionPrefija.length()];
 		
+		//creamos una pila de cadenas de nombre pila
 		
-		Pila<String> pila = new Pila<>();
 		
 		for (int i=0,j=0;i<=expresionPrefija.length()-1;i++) {
 			char simbolo = expresionPrefija.charAt(i);
@@ -149,16 +106,12 @@ public class InfijaPrefija {
 			else{
 				//Retiro los dos últimos elementos de la pila
 				
-				double y = Double.parseDouble(pila.cima());
-			    pila.retirar();
-			    
-				double x = Double.parseDouble(pila.cima());
-				pila.retirar();
+				
 				//efectuo la operación
 				double z = calcularOperacion(x,y,simbolo);
 				
 				//apilo el resultado
-				pila.apilar(z+"");
+				
 				
 			}
 			
@@ -187,17 +140,23 @@ public class InfijaPrefija {
 	private static double calcularOperacion(double a, double b, char car) {
 		switch(car) {
 			case '^':
-				return Math.pow(a, b);
+				//retornamos a elevado a la b
 			case '/':
-				return a/b;
+			  	//retornamos a dividido b
+			
 			case '*':
-			   return a*b;
+			 	//retornamos a por b
+			   
 			case '+':
-				   return a+b;
+			   	//retornamos a+b
+
+
 			case '-':
-				   return a-b;
+			   //retornamos a-b
+				   
 			default:
-				return 0.0;
+			   //retornamos 0.0
+			
 		
 		}
 		
