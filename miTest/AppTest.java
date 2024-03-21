@@ -62,11 +62,5 @@ class AppTest {
         assertTrue(expresionPrefijo.equals(expresionEsperada));
 
     }
-    @Test public void testInfijaPrefijaEvaluada(){
-        
-    }
-    
-    
-
-    
+   
 }
