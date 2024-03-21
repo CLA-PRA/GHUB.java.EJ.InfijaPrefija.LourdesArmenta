@@ -9,9 +9,11 @@ import org.junit.jupiter.api.BeforeAll;
 
 class AppTest {
     static Delimitadores objDel;
+    
 
     @BeforeAll public static void setUp() {
         objDel = new Delimitadores();
+        
     }
 
     @Test public void testEvaluacionExitosa(){
@@ -32,6 +34,36 @@ class AppTest {
         System.out.println(resultado);
         assertFalse(resultado,"Debe ser verdadero");
 
+    }
+    @Test public void testInfijaPrefija(){
+        String expresionInfija = "a + b * c";//expresión valida
+		String expresionPrefijo = InfijaPrefija.convertirAPrefijo(expresionInfija);
+        String expresionEsperada = "abc*+";
+        assertTrue(expresionPrefijo.equals(expresionEsperada));
+
+        expresionInfija = "(a + b) * c"; //expresión valida
+        expresionPrefijo = InfijaPrefija.convertirAPrefijo(expresionInfija);
+        expresionEsperada = "ab+c*";
+        assertTrue(expresionPrefijo.equals(expresionEsperada));
+
+        expresionInfija = "(a + (e+z)+b) * c"; //expresión valida
+        expresionPrefijo = InfijaPrefija.convertirAPrefijo(expresionInfija);
+        expresionEsperada = "aez++b+c*";
+        assertTrue(expresionPrefijo.equals(expresionEsperada));
+
+        expresionInfija = "(a + (e+z)/b) * c"; //expresión valida
+        expresionPrefijo = InfijaPrefija.convertirAPrefijo(expresionInfija);
+        expresionEsperada = "aez+b/+c*";
+        assertTrue(expresionPrefijo.equals(expresionEsperada));
+
+        expresionInfija = "(X + Z) * W / T ^ Y - V"; //expresión valida
+        expresionPrefijo = InfijaPrefija.convertirAPrefijo(expresionInfija);
+        expresionEsperada = "XZ+W*TY^/V-";
+        assertTrue(expresionPrefijo.equals(expresionEsperada));
+
+    }
+    @Test public void testInfijaPrefijaEvaluada(){
+        
     }
     
     

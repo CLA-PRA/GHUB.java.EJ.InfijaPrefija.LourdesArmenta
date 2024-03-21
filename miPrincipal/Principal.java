@@ -14,6 +14,7 @@ public class Principal{
             System.out.println(" 4) Expresion Infija a PostFija");
             System.out.println(" 5) Cola");
             System.out.println(" 6) DemoQueue");
+            System.out.println(" 7) Infija a Prefija");
 
             System.out.println();
 
@@ -37,6 +38,9 @@ public class Principal{
                    break;
                 case 6:
                    DemoQueue.menu();
+                   break;
+                case 7:
+                   DemoInfijaPrefija.menu();
                    break;
     
                 case 0:
