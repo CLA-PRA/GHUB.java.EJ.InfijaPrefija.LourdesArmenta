@@ -9,10 +9,12 @@ import org.junit.jupiter.api.BeforeAll;
 
 class AppTest {
     static Delimitadores objDel;
+    static Pila<Integer> pila;
     
 
     @BeforeAll public static void setUp() {
         objDel = new Delimitadores();
+        pila = new Pila<Integer>();
         
     }
 
@@ -60,6 +62,31 @@ class AppTest {
         expresionPrefijo = InfijaPrefija.convertirAPrefijo(expresionInfija);
         expresionEsperada = "XZ+W*TY^/V-";
         assertTrue(expresionPrefijo.equals(expresionEsperada));
+
+    }
+    @Test public void buscarPila(){
+       
+        pila.apilar(20);
+        pila.apilar(50);
+        pila.apilar(70);
+
+        int resultado = pila.buscar(20);
+        assertEquals(2,resultado);
+        
+        resultado = pila.buscar(50);
+        assertEquals(1,resultado);
+        
+        resultado = pila.buscar(70);
+        assertEquals(0,resultado);
+       
+        resultado = pila.buscar(2);
+        assertEquals(-1,resultado);
+
+        pila.retirar();
+
+        resultado = pila.buscar(50);
+        assertEquals(0,resultado);
+        
 
     }
    

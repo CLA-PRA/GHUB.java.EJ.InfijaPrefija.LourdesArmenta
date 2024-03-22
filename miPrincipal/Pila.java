@@ -50,4 +50,13 @@ public class Pila<T>{
         else
            return null;
     }
+    /**
+	 * 
+	 * @param elemento
+	 * @return la posición del elemento en la pila si lo encuentra
+	 *         si no regresa -1
+	 */
+	public int buscar(T elemento) {
+		//coloca aquí el código faltantw
+	}
 }
