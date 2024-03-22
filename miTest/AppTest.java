@@ -64,7 +64,7 @@ class AppTest {
         assertTrue(expresionPrefijo.equals(expresionEsperada));
 
     }
-    @Test public void buscarPila(){
+    @Test public void testBuscarPila(){
        
         pila.apilar(20);
         pila.apilar(50);
